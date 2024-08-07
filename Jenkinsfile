@@ -8,8 +8,8 @@ pipeline {
         CLUSTER_NAME = 'kong-EKSClusterRole'
         HELM_BIN = '/usr/local/bin/helm'
         SERVICE_ACCOUNT = 'jenkins-sa'
-        NAMESPACE_CP = 'kong-cp'
-        NAMESPACE_DP = 'kong-dp'
+        NAMESPACE_CP = 'kong-cp-kong'
+        NAMESPACE_DP = 'kong-dp-kong'
         CERTS_DIR = './certs' // Path to your certificate files
         LICENSE_FILE = 'license.json' // Path to your Kong license file
     }
@@ -85,7 +85,7 @@ pipeline {
                     def telem_ep = "kong-cp-kong-clustertelemetry.$NAMESPACE_CP.svc.cluster.local:8006"
                     
                     sh """
-                        helm install -f ./deployment_yamls/kong_dp_values.yaml kong-dp --set env.cluster_control_plane=${cluster_ep} --set env.cluster_telemetry_endpoint=${telem_ep} kong/kong --namespace $NAMESPACE_DP
+                        helm install -f ./kong_values/kong_dp_values.yaml kong-dp --set env.cluster_control_plane=${cluster_ep} --set env.cluster_telemetry_endpoint=${telem_ep} kong/kong --namespace $NAMESPACE_DP
                     """
                 }
             }
