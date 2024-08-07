@@ -1,6 +1,6 @@
 image:
   repository: kong/kong-gateway
-  tag: "3.4.3.9"
+  tag: "3.4.0.0"
 
 waitImage:
   pullPolicy: IfNotPresent
