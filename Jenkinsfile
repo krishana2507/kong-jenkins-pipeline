@@ -48,7 +48,7 @@ pipeline {
         stage('Create Secrets') {
             steps {
                 script {
-                    sh """
+                    sh '''
                         kubectl create secret tls kong-cluster-cert --cert=${CERTS_DIR}/tls.crt --key=${CERTS_DIR}/tls.key -n $NAMESPACE_CP || true
                         kubectl create secret tls kong-cluster-cert --cert=${CERTS_DIR}/tls.crt --key=${CERTS_DIR}/tls.key -n $NAMESPACE_DP || true
                         
@@ -60,8 +60,8 @@ pipeline {
                         kubectl create secret generic kong-enterprise-superuser-password --from-literal=password=password -n $NAMESPACE_CP || true
                         
                         x='{"cookie_name":"admin_session","storage":"kong","cookie_samesite":"off","cookie_secure":false,"secret":"secret"}'
-                        kubectl create secret generic kong-session-config --from-literal=admin_gui_session_conf="${x}" -n $NAMESPACE_CP || true
-                    """
+                        kubectl create secret generic kong-session-config --from-literal=admin_gui_session_conf="$x" -n $NAMESPACE_CP || true
+                    '''
                 }
             }
         }
@@ -69,11 +69,11 @@ pipeline {
         stage('Deploy Control Plane') {
             steps {
                 script {
-                    sh """
+                    sh '''
                         helm repo add kong https://charts.konghq.com
                         helm repo update
                         helm install -f ./kong_values/kong_cp_values.yaml kong-cp kong/kong --namespace $NAMESPACE_CP
-                    """
+                    '''
                 }
             }
         }
