@@ -72,7 +72,7 @@ pipeline {
                     sh '''
                         helm repo add kong https://charts.konghq.com
                         helm repo update
-                        helm install -f ./kong_values/kong_cp_values.yaml kong-cp kong/kong --namespace $NAMESPACE_CP
+                        helm upgrade --install -f ./kong_values/kong_cp_values.yaml kong-cp kong/kong --namespace $NAMESPACE_CP
                     '''
                 }
             }
