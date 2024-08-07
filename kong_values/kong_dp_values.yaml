@@ -11,8 +11,8 @@ extraLabels:
 env:
   database: "off"
   prefix: /kong_prefix/
-  cluster_control_plane: kong-cp-kong-cluster.kong.svc.cluster.local:8005
-  cluster_telemetry_endpoint: kong-cp-kong-clustertelemetry.kong.svc.cluster.local:8006
+  cluster_control_plane: kong-cp-kong-kong-cluster.kong.svc.cluster.local:8005
+  cluster_telemetry_endpoint: kong-cp-kong-kong-clustertelemetry.kong.svc.cluster.local:8006
   lua_ssl_trusted_certificate: /etc/secrets/kong-cluster-cert/tls.crt
   cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
   cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
