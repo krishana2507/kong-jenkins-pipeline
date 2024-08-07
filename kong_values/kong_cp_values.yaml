@@ -47,7 +47,7 @@ env:
         key: password
 
   # url callbacks
-  admin_api_uri: http://48.217.15.251:8001
+  admin_api_uri: http://a7d0f5afbaf3a4641812e22e6530e01a-577694733.ap-south-1.elb.amazonaws.com:8001
 
   # clustering certificates
   cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
