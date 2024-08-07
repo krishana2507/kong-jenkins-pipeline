@@ -19,20 +19,20 @@ env:
   log_level: debug
   role: data_plane
   nginx_http_client_max_body_size: 1m
-  plugins: bundled, plugintemplate, plugintemplate2, plugintemplate3
+  # plugins: bundled, plugintemplate, plugintemplate2, plugintemplate3
   # plugins: bundled
 
 secretVolumes:
   - kong-cluster-cert
 
-plugins:
-  configMaps:
-  - name: plugintemplate
-    pluginName: plugintemplate
-  - name: plugintemplate2
-    pluginName: plugintemplate2
-  - name: plugintemplate3
-    pluginName: plugintemplate3
+# plugins:
+#   configMaps:
+#   - name: plugintemplate
+#     pluginName: plugintemplate
+#   - name: plugintemplate2
+#     pluginName: plugintemplate2
+#   - name: plugintemplate3
+#     pluginName: plugintemplate3
 
 admin:
   enabled: false 
