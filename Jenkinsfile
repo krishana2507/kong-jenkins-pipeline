@@ -85,7 +85,7 @@ pipeline {
                     def telem_ep = sh(script: "kubectl get svc --namespace $NAMESPACE_CP kong-cp-kong-clustertelemetry -o jsonpath='{.status.loadBalancer.ingress[0].ip}:8006'", returnStdout: true).trim()
                     
                     sh """
-                        helm install -f ./kong_values/kong_dp_values.yaml kong-dp --set env.cluster_control_plane=${cluster_ep} --set env.cluster_telemetry_endpoint=${telem_ep} kong/kong --namespace $NAMESPACE_DP
+                        helm upgrade --install -f ./kong_values/kong_dp_values.yaml kong-dp --set env.cluster_control_plane=${cluster_ep} --set env.cluster_telemetry_endpoint=${telem_ep} kong/kong --namespace $NAMESPACE_DP
                     """
                 }
             }
